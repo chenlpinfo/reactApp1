@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { TaskContext } from './TaskContext';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTasks, sliceTasksActions } from '../../store/sliceTasks';
 
@@ -25,15 +24,12 @@ export default function Task({ task }: TaskProps) {
   }
 
   function changeTask(newTask: taskType) {
-    dispatch(
-      sliceTasksActions.setTasks(
-        tasks.map((t) => {
-          if (t.id === newTask.id) {
-            return newTask;
-          } else return t;
-        })
-      )
-    );
+    const newTasks = tasks.map((t) => {
+      if (t.id === newTask.id) {
+        return newTask;
+      } else return t;
+    });
+    dispatch(sliceTasksActions.setTasks(newTasks));
   }
 
   let taskContent;

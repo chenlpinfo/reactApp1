@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTasks } from '../../store/sliceTasks';
 import Task, { taskType } from './Task';
-import { TaskContext } from './TaskContext';
 
 export default function TaskList() {
-  const { tasks } = useContext(TaskContext); //引入useContext
+  const tasks = useSelector(selectTasks);
 
   return (
     <ul>
