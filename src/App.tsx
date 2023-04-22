@@ -1,9 +1,8 @@
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import TaskAppRedux from './03-learn-redux/Task-Redux/TaskAppRedux';
 import './App.css';
 import { persistor, store } from './store';
-import { TaskContextProvider } from './learn-context/Task-context/TaskContext';
-import TaskAppRedux from './learn-redux/Task-Redux/TaskAppRedux';
 
 function App() {
   return (

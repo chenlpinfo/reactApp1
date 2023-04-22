@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { taskType } from '../learn-context/Task-context/Task';
-import { initialTasks } from '../learn-redux/Task-Redux/TaskContext';
+import { taskType } from '../02-learn-context/Task-context/Task';
+import { initialTasks } from '../03-learn-redux/Task-Redux/TaskContext';
 
 export interface ISliceTasksState {
   tasks: taskType[];
