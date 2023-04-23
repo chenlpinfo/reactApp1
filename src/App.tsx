@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import { PersistGate } from 'redux-persist/integration/react';
+import { VideoPlayContextProvider } from './02-learn-context/video-play-context/VideoPlayContext';
+import VideoPlayApp from './03-learn-redux/video-play-redux/VideoPlayApp';
 import './App.css';
+import { persistor, store } from './store';
+import { Provider as ReduxProvider } from 'react-redux';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ReduxProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <VideoPlayApp />
+        </PersistGate>
+      </ReduxProvider>
+
+      {/* <ReduxProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <TaskAppRedux />
+        </PersistGate>
+      </ReduxProvider> */}
+
+      {/* <TaskContextProvider>
+        <TaskApp />
+      </TaskContextProvider> */}
+
+      {/* <VideoPlayApp></VideoPlayApp> */}
+
+      {/* <VideoPlayContextProvider>
+        <VideoPlayApp />
+      </VideoPlayContextProvider> */}
+    </>
   );
 }
 
