@@ -48,3 +48,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## delete folder
 
 rm -r -fo ./node_modules
+
+# install library
+
+npm i xxx
+yarn add xxx
