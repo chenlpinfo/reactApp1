@@ -1,7 +1,11 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { IProduct } from './IProduct';
 
-export default function Navbar() {
+export default function Navbar(props: { cart: IProduct[] }) {
+  function getClassName({ isActive, isPending }: any) {
+    return isActive ? 'active' : '';
+  }
+
   return (
     <>
       <nav className='navbar'>
@@ -10,17 +14,17 @@ export default function Navbar() {
         </NavLink>
         <ul>
           <li className='nav-item'>
-            <NavLink to='/' className={({ isActive }) => (isActive ? 'active' : '')}>
+            <NavLink to='/' className={getClassName}>
               Home
             </NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink to='/about' className={({ isActive }) => (isActive ? 'active' : '')}>
+            <NavLink to='/about' className={getClassName}>
               About us
             </NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink to='/products' className={({ isActive }) => (isActive ? 'active' : '')}>
+            <NavLink to='/products' className={getClassName}>
               Products
             </NavLink>
           </li>
