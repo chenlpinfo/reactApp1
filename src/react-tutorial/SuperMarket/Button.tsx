@@ -1,8 +1,15 @@
 import clsx from 'clsx';
 import React, { Children } from 'react';
 
-export default function Button(props: any) {
-  const { Children, outline, className, ...rest } = props;
+type ButtonProps = {
+  children: React.ReactNode;
+  outline?: boolean;
+  className?: string;
+  onClick?: () => void;
+};
+
+export default function Button(props: ButtonProps) {
+  const { children, outline, className, onClick } = props;
   const classNames = clsx(
     {
       btn: true,
@@ -14,8 +21,8 @@ export default function Button(props: any) {
 
   return (
     <>
-      <button className={classNames} {...rest}>
-        {Children}
+      <button className={classNames} onClick={onClick}>
+        {children}
       </button>
     </>
   );

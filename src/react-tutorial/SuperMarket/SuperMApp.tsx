@@ -7,6 +7,8 @@ import Products from './Products';
 import About from './About';
 import Cart from './Cart';
 import { IProduct } from './IProduct';
+import ProductDetails from './ProductDetails';
+import ProductDetailInfo from './ProductDetailInfo';
 
 export default function SuperMApp() {
   const [cart, setCart] = useState([]);
@@ -26,6 +28,10 @@ export default function SuperMApp() {
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/products' element={<Products cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />}></Route>
+          <Route path='/products/:id' element={<ProductDetails />}>
+            <Route path='' element={<ProductDetailInfo />}></Route>
+          </Route>
+
           <Route path='/about' element={<About />}></Route>
           <Route path='/cart' element={<Cart />}></Route>
         </Routes>
