@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IProduct } from './IProduct';
+import { SuperMarketContext } from './SuperMarketContext';
 
-export default function Cart({ cart }: { cart: IProduct[] }) {
+export default function Cart() {
+  const { cart, setCart } = useContext(SuperMarketContext);
+
   const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
   return (
     <div className='cart-layout'>

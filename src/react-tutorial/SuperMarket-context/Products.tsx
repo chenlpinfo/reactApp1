@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Loader from './Loader';
 import Product from './Product';
 import useFetch from './useFetch';
 import { IProduct } from './IProduct';
+import { SuperMarketContext } from './SuperMarketContext';
 
 type ProductsProps = {
-  cart: IProduct[];
   onProductAdd: (newProduct: IProduct) => void;
   onProductDelete: (id: number) => void;
 };
 
-export default function Products({ cart, onProductAdd, onProductDelete }: ProductsProps) {
+export default function Products({ onProductAdd, onProductDelete }: ProductsProps) {
+  const { cart, setCart } = useContext(SuperMarketContext);
+
   const [products, setProducts] = useState<IProduct[]>([]);
   const { get, loading } = useFetch('https://react-tutorial-demo.firebaseio.com/');
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SuperMarket.scss';
 import Navbar from './Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -11,9 +11,10 @@ import ProductDetails from './ProductDetails';
 import ProductDetailInfo from './ProductDetailInfo';
 import ProductDetailNutrition from './ProductDetailNutrition';
 import ProductDetailStorage from './ProductDetailStorage';
+import { SuperMarketContext } from './SuperMarketContext';
 
 export default function SuperMApp() {
-  const [cart, setCart] = useState<IProduct[]>([]);
+  const { cart, setCart } = useContext(SuperMarketContext);
 
   useEffect(() => {
     console.log(cart);
@@ -53,11 +54,11 @@ export default function SuperMApp() {
 
   return (
     <BrowserRouter>
-      <Navbar cart={cart} />
+      <Navbar />
       <div className='container'>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/products' element={<Products cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />}></Route>
+          <Route path='/products' element={<Products onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />}></Route>
           <Route path='/products/:id' element={<ProductDetails />}>
             <Route path='' element={<ProductDetailInfo />}></Route>
             <Route path='nutrition' element={<ProductDetailNutrition />}></Route>
@@ -65,7 +66,7 @@ export default function SuperMApp() {
           </Route>
 
           <Route path='/about' element={<About />}></Route>
-          <Route path='/cart' element={<Cart cart={cart} />}></Route>
+          <Route path='/cart' element={<Cart />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

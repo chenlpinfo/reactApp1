@@ -1,11 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { IProduct } from './IProduct';
+import { SuperMarketContext } from './SuperMarketContext';
+import { useContext } from 'react';
 
-export default function Navbar(props: { cart: IProduct[] }) {
+export default function Navbar() {
+  const { cart, setCart } = useContext(SuperMarketContext);
+
   function getClassName({ isActive, isPending }: any) {
     return isActive ? 'active' : '';
   }
-  const cartCount = props.cart.reduce((total, product) => total + product.quantity, 0);
+  const cartCount = cart.reduce((total, product) => total + product.quantity, 0);
 
   return (
     <>
