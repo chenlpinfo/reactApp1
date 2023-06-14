@@ -5,13 +5,8 @@ import useFetch from './useFetch';
 import { IProduct } from './IProduct';
 import { SuperMarketContext } from './SuperMarketContext';
 
-type ProductsProps = {
-  onProductAdd: (newProduct: IProduct) => void;
-  onProductDelete: (id: number) => void;
-};
-
-export default function Products({ onProductAdd, onProductDelete }: ProductsProps) {
-  const { cart, setCart } = useContext(SuperMarketContext);
+export default function Products() {
+  const { cart, setCart, handleProductAdd, handleProductDelete } = useContext(SuperMarketContext);
 
   const [products, setProducts] = useState<IProduct[]>([]);
   const { get, loading } = useFetch('https://react-tutorial-demo.firebaseio.com/');
@@ -34,7 +29,7 @@ export default function Products({ onProductAdd, onProductDelete }: ProductsProp
         <div className='products-grid'>
           {loading && <Loader />}
           {products.map((product: IProduct) => {
-            return <Product key={product.id} details={product} cart={cart} onProductAdd={onProductAdd} onProductDelete={onProductDelete} />;
+            return <Product key={product.id} details={product} />;
           })}
         </div>
       </div>

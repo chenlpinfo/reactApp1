@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from './Button';
 import { type } from 'os';
 import { IProduct } from './IProduct';
 import { Link } from 'react-router-dom';
+import { SuperMarketContext } from './SuperMarketContext';
 
 type ProductProps = {
   details: IProduct;
-  cart: IProduct[];
-  onProductAdd: (newProduct: IProduct) => void;
-  onProductDelete: (id: number) => void;
 };
 
 export default function Product(props: ProductProps) {
-  const { details, cart, onProductAdd, onProductDelete } = props;
-  const productFromCart = props.cart.find((product) => product.id === details.id);
+  const { cart, handleProductAdd, handleProductDelete } = useContext(SuperMarketContext);
+
+  const { details } = props;
+  const productFromCart = cart.find((product) => product.id === details.id);
   const quantity = productFromCart ? productFromCart.quantity : 0;
 
   return (
@@ -35,11 +35,11 @@ export default function Product(props: ProductProps) {
         </div>
         <div className='product-checkout'>
           <div>
-            <Button outline className='product-delete' onClick={() => props.onProductDelete(details.id)}>
+            <Button outline className='product-delete' onClick={() => handleProductDelete(details.id)}>
               x
             </Button>
           </div>
-          <Button outline onClick={() => props.onProductAdd(details)}>
+          <Button outline onClick={() => handleProductAdd(details)}>
             ${details.price}
           </Button>
         </div>
