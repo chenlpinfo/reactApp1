@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import imageReducer from './sliceImage';
 import tasksReducer from './sliceTasks';
 import videoPlayReducer from './sliceVideoPlay';
+import superMarketReducer from './sliceSuperMarket';
 
 export const rootPersistConfig = {
   key: 'root',
@@ -30,10 +31,17 @@ const videoPlayPersistConfig = {
   blacklist: [],
 };
 
+const superMarketPersistConfig = {
+  key: 'sliceSuperMarket',
+  storage: storage,
+  blacklist: [],
+};
+
 const rootReducer = combineReducers({
   sliceImage: persistReducer(imagePersistConfig, imageReducer),
   sliceTasks: persistReducer(tasksPersistConfig, tasksReducer),
   sliceVideoPlay: persistReducer(videoPlayPersistConfig, videoPlayReducer),
+  sliceSuperMarket: persistReducer(superMarketPersistConfig, superMarketReducer),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer); //此行开始到最底下都不用改变

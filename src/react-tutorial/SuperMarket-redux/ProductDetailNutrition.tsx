@@ -1,11 +1,10 @@
 import React from 'react';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { IProduct } from './IProduct';
 
 export default function ProductDetailNutrition() {
   const product = useOutletContext<IProduct>();
   const nutrition = product?.nutrition;
-  const params = useParams();
 
   return (
     <>

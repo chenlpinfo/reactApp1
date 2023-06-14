@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
-import { IProduct } from './IProduct';
+import React, { useEffect, useState } from 'react';
 import useFetch from './useFetch';
+import { useParams, NavLink, Outlet } from 'react-router-dom';
+import { IProduct } from './IProduct';
 
 export default function ProductDetails() {
   const [product, setProduct] = useState<IProduct>();
@@ -42,7 +42,6 @@ export default function ProductDetails() {
             </NavLink>
           </li>
         </ul>
-
         <Outlet context={product}></Outlet>
       </div>
     </>
